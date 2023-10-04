@@ -1,0 +1,5 @@
+name: 'Test solidity action check'
+description: 'Test'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
