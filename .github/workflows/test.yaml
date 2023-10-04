@@ -6,4 +6,4 @@ jobs:
     name: Test
     steps:
       - name: Run Solidity Security Check
-        uses: zerbinidamata/HephaestusSolidityGuard@main
+        uses: docker://ghcr.io/zerbinidamata/hephaestussolidityguard/solhint:latest
