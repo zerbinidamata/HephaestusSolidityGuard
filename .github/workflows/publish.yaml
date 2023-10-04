@@ -22,10 +22,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
-          docker tag ghcr.io/${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
+          docker build -t ghcr.io/${{ github.repository_nwo  }}:${{ github.sha }} .
+          docker tag ghcr.io/${{ github.repository_nwo  }}:${{ github.sha }} ghcr.io/${{ github.repository_nwo  }}:latest
   
       - name: Push Docker image
         run: |
-          docker push ghcr.io/${{ github.repository }}${{ github.sha }}
-          docker push ghcr.io/${{ github.repository }}:latest
+          docker push ghcr.io/${{ github.repository_nwo  }}${{ github.sha }}
+          docker push ghcr.io/${{ github.repository_nwo  }}:latest
