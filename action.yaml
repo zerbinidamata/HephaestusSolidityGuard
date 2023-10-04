@@ -1,0 +1,9 @@
+name: 'Blog Custom Github Action'
+description: 'Call an API and get the result'
+inputs:
+  INPUT_MYTHX_API_KEY:
+    description: 'Mytxh API KEY'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
