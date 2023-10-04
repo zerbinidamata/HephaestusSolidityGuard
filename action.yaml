@@ -1,5 +1,5 @@
-name: 'Test solidity action check'
-description: 'Test'
+name: 'Solidity Security checker'
+description: 'Solidity Security checker using solhint'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: ghcr.io/zerbinidamata/hephaestussolidityguard/solhint:latest
