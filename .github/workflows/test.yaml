@@ -1,7 +1,7 @@
 on: [push]
 
 jobs:
-  custom_test:
+  push_test_image:
     runs-on: ubuntu-latest
     name: Test
     steps:
@@ -28,5 +28,11 @@ jobs:
 
           docker push $repository_name:${{ github.sha }}
           docker push $repository_name:latest
+
+
+  run_test:
+    runs-on: ubuntu-latest
+    needs: push_test_image
+    steps:
       - name: Run Solidity Security Check
         uses: docker://ghcr.io/zerbinidamata/hephaestussolidityguard/solhint-checker:latest
