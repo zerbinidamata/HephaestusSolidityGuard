@@ -1,7 +1,15 @@
-on: [push]
+name: CI
 
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+ 
 jobs:
-  push_test_image:
+  test_solhint:
     runs-on: ubuntu-latest
     name: Test
     steps:
