@@ -1,9 +1,30 @@
-on: [push]
+name: CI
 
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+ 
 jobs:
-  custom_test:
+  test_solhint:
     runs-on: ubuntu-latest
     name: Test
     steps:
-      - name: Run Solidity Security Check
-        uses: docker://ghcr.io/zerbinidamata/hephaestussolidityguard/solhint:latest
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Solhint Docker image
+        run: |
+          repository_name="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')/solhint-checker"
+
+          docker build -t $repository_name:${{ github.sha }} -f solhint.dockerfile .
+          docker tag $repository_name:${{ github.sha }} $repository_name:latest
+  
+      - name: Run Solhint Docker image
+        run: |
+          repository_name="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')/solhint-checker"
+
+          docker run $repository_name:latest

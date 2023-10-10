@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
 
-solhint **/*.sol
+solhint -c solhint.json **/*.sol
 
