@@ -29,4 +29,4 @@ jobs:
           docker push $repository_name:${{ github.sha }}
           docker push $repository_name:latest
       - name: Run Solidity Security Check
-        uses: docker://ghcr.io/zerbinidamata/hephaestussolidityguard/solhint-test:latest
+        uses: docker://ghcr.io/zerbinidamata/hephaestussolidityguard/solhint-checker:latest
