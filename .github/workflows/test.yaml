@@ -22,17 +22,8 @@ jobs:
           docker build -t $repository_name:${{ github.sha }} -f solhint.dockerfile .
           docker tag $repository_name:${{ github.sha }} $repository_name:latest
   
-      - name: Push Solhint Docker image
+      - name: Run Solhint Docker image
         run: |
           repository_name="ghcr.io/$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')/solhint-checker"
 
-          docker push $repository_name:${{ github.sha }}
-          docker push $repository_name:latest
-
-
-  run_test:
-    runs-on: ubuntu-latest
-    needs: push_test_image
-    steps:
-      - name: Run Solidity Security Check
-        uses: docker://ghcr.io/zerbinidamata/hephaestussolidityguard/solhint-checker:latest
+          docker run $repository_name:latest
